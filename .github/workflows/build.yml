@@ -18,7 +18,7 @@ jobs:
         run: |
           matrix_value=$(yaml2json build.yaml | jq -c .)
           yaml2json build.yaml
-          echo "{matrix}={matrix_value}" >> $GITHUB_OUTPUT
+          echo "{MATRIX}={matrix_value}" >> $GITHUB_OUTPUT
   build:
     runs-on: ubuntu-latest
     container:
@@ -27,7 +27,7 @@ jobs:
     name: Build
     strategy:
       fail-fast: false
-      matrix: ${{fromJson(matrix.steps.set-matrix.outputs.matrix)}}
+      matrix: ${{fromJson(steps.set-matrix.outputs.MATRIX)}}
     steps:
       - name: Prepare variables
         id: variables
