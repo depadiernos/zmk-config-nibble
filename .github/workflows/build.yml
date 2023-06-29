@@ -16,9 +16,9 @@ jobs:
       - id: set-matrix
         name: Fetch Build Matrix
         run: |
-          MATRIX=$(yaml2json build.yaml | jq -c .)
+          matrix_value=$(yaml2json build.yaml | jq -c .)
           yaml2json build.yaml
-          echo "{matrix}={$MATRIX}" >> $GITHUB_OUTPUT
+          echo "{matrix}={matrix_value}" >> $GITHUB_OUTPUT
   build:
     runs-on: ubuntu-latest
     container:
